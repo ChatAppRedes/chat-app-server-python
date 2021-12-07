@@ -1,0 +1,11 @@
+{
+  "name": "chat-app-server-python",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ChatAppRedes/chat-app-server-python.git",
+  "author": "ruifernandees <dev.ruifernandes@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
