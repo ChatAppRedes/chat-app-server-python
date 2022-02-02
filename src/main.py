@@ -6,15 +6,20 @@ import threading
 users = []
 
 def sendMessageToAllUsers(message):
-  return
   for user in users:
-    print(user)
-    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientSocket.connect(user)
-    clientSocket.send(message)
+    try:
+      user.send(message.encode())
+    except: 
+      users.remove(user)
 
 # returns boolean
 def handleMessage(response):
+  if ('receiver' in response):
+    print("Receiver in ")
+    if (response['receiver']):
+      print("Receiver")
+      return True
+
   if (not ('message' in response)):
     message = "Bem vindo(a), " + response['username']
     print(message)
@@ -27,7 +32,7 @@ def handleMessage(response):
       sendMessageToAllUsers(message)
       return True
     else:
-      message = response['username'] + "saiu!"
+      message = response['username'] + " saiu!"
       print(message)
       sendMessageToAllUsers(message)
       return False
@@ -39,9 +44,9 @@ def threaded(connection):
     if (not handleMessage(response)):
       break
     data = data[::-1]
-    print("send data")
-    connection.send(data)
-    print("after send data")
+    # print("send data")
+    # connection.send(data)
+    # print("after send data")
   connection.close()
 
 def main():
@@ -54,7 +59,7 @@ def main():
     serverInput, address = serverSocket.accept()
     print("After accept")
     print("Nova conexão: ", address)
-    users.append(address)
+    users.append(serverInput)
     print(users)
     start_new_thread(threaded, (serverInput,))
   serverSocket.close()
