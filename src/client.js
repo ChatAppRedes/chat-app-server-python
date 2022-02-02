@@ -4,6 +4,7 @@ const readlineSync = require('readline-sync');
 const PORT = 3335;
 
 const client = new net.Socket();
+
 client.connect(PORT, 'localhost', () => {
   const username = process.argv[2];
   const jsonMessage = {
@@ -12,7 +13,7 @@ client.connect(PORT, 'localhost', () => {
   client.write(JSON.stringify(jsonMessage));
   while (true) {
     const message = readlineSync.question("=> ");
-    if (message === 'DESCONECTAR') {
+    if (message === 'desconectar') {
       client.write(JSON.stringify({
         username,
         message
