@@ -39,7 +39,10 @@ def handleMessage(response):
 
 def threaded(connection):
   while True:
-    data = connection.recv(1024)
+    data = connection.makefile().readline()
+    dataWithoutLineBreak = data.replace('\n', '')
+    response = json.loads(dataWithoutLineBreak)
+    print(response)
     response = json.loads(data.rstrip())
     if (not handleMessage(response)):
       break
