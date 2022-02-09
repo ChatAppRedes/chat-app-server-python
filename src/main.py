@@ -8,7 +8,9 @@ users = []
 def sendMessageToAllUsers(message):
   for user in users:
     try:
-      user.send(message.encode())
+      # user.send(message.encode())
+      user.send((message + "\n").encode())
+      print("Message sent to", user)
     except: 
       users.remove(user)
 
