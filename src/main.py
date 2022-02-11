@@ -25,18 +25,26 @@ def handleMessage(response):
   if (not ('message' in response)):
     message = "Bem vindo(a), " + response['username']
     print(message)
-    sendMessageToAllUsers(message)
+    responseToUsers = {
+      "message": "welcome",
+      "username": response['username']
+    }
+    sendMessageToAllUsers(json.dumps(responseToUsers))
     return True
   else:
-    if (response['message'] != 'desconectar'):
+    if (response['message'] != 'quit'):
       message = response['username'] + ": " + response['message']
       print(message)
-      sendMessageToAllUsers(message)
+      sendMessageToAllUsers(json.dumps(response))
       return True
     else:
       message = response['username'] + " saiu!"
       print(message)
-      sendMessageToAllUsers(message)
+      responseToUsers = {
+        "message": "quit",
+        "username": response['username']
+      }
+      sendMessageToAllUsers(json.dumps(responseToUsers))
       return False
 
 def threaded(connection):
