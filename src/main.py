@@ -18,9 +18,12 @@ def sendMessageToAllUsers(message):
 def handleMessage(response):
   if ('receiver' in response):
     print("Receiver in ")
-    if (response['receiver']):
+    if (response['receiver'] and not ('message' in response)):
       print("Receiver")
       return True
+    elif (response['receiver'] and response['message'] == 'quit'):
+      print("Receiver quit")
+      return False
 
   if (not ('message' in response)):
     message = "Bem vindo(a), " + response['username']
