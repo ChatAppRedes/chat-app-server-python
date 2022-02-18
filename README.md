@@ -4,7 +4,7 @@
 
 Obs: é necessário instalar o Python 3.
 
-> Initial steps
+- Clonar o repositório e executar o main.py:
 ```bash
 $ git clone https://github.com/ChatAppRedes/chat-app-server-python.git
 $ cd chat-app-server-python
