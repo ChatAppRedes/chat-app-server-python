@@ -2,7 +2,7 @@
 
 ## 🚀 Instruções para rodar o servidor
 
-Obs: é necessário instalar o Python 3.
+Obs: é necessário instalar o Python 3 e o Java 11.
 
 - Clonar o repositório e executar o main.py:
 ```bash
